@@ -12,10 +12,11 @@
 * @category   Minecraft
 * @package    Minecraft_Server_Script
 * @subpackage Minecraft_Index
-* @copyright  Copyright (c) Jaryth Frenette 2012, hfuller 2011, caseypugh, 2011
+* @copyright  Copyright (c) Jaryth Frenette 2012, caseypugh 2012, hfuller 2011
 * @license    Open Source - Anyone can use, modify and redistribute as wanted
-* @version    Release: 1.0
+* @version    Release: 1.0.1
 * @link       http://jaryth.net
+* @link       http://caseypugh.com
 */
 
 //Include the Class file
@@ -114,7 +115,7 @@ div#extra{clear:both;width:100%}
 
 <div id="ts3viewer_956271" style="width:; background-color:;"> </div>
 <!--
-You can put a Teamspeak viewer, or another monitoring viewer here!
+-You can put a Teamspeak viewer, or another monitoring viewer here!
 -->
 </div>
 <div id="extra">

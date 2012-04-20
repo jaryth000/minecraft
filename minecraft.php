@@ -9,10 +9,11 @@
 * @category   Minecraft
 * @package    Minecraft_Server_Script
 * @subpackage Minecraft_Class
-* @copyright  Copyright (c) Jaryth Frenette 2012, hfuller 2011, caseypugh, 2011
+* @copyright  Copyright (c) Jaryth Frenette 2012, caseypugh 2012, hfuller 2011
 * @license    Open Source - Anyone can use, modify and redistribute as wanted
-* @version    Release: 1.0
+* @version    Release: 1.0.1
 * @link       http://jaryth.net
+* @link       http://caseypugh.com
 */
 
 //Global settings:
@@ -141,7 +142,8 @@ function add_user($name, $state, $time){
 function online($name, $time, $log=0, $chat=false){
   //This creates a chat log, just adds the string into the array
   if($chat){
-   $this->chat[] =  $name . " said: " . $chat . "<br>\n";
+   //Strip the chat of all line breaks (\n and \r) and add it to the chat array
+   $this->chat[] =  $name . " said: " . str_replace(chr(10), '', str_replace(chr(13), '', $chat)) . "<br>";
   }  
 
   //Check to see if the user exists yet, and changes their status if they do
@@ -242,6 +244,7 @@ function cache(){
     if($timeDiffrence < $this->cacheTime){
       //If its less than cacheTime then load the data into the users array  
       $this->users = unserialize($cache[1]);
+      $this->chat = unserialize($cache[2]);
     }else{
       //If its too old, generate fresh one
       $this->parseLog();
@@ -257,7 +260,7 @@ function cache(){
 //<-- saveCache :: This function serializes the cache data and saves it to disk
 function saveCache(){
   //Set cache generation time for tracking later
-  $cache = mktime() . "\n" . serialize($this->users); 
+  $cache = mktime() . "\n" . serialize($this->users) . "\n" . serialize($this->chat); 
   
   //Create the file and write the data
   $cacheFile = fopen($this->cache, 'w');
